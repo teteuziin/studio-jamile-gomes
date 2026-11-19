@@ -1,0 +1,24 @@
+name: Renomear site para index.html
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Renomear arquivo para index.html
+        run: |
+          if [ -f site-studio-jamile-gomes.html ]; then
+            git config user.name "teteuziin"
+            git config user.email "teteuziin@users.noreply.github.com"
+            git mv site-studio-jamile-gomes.html index.html
+            git commit -m "Site Studio Jamile Gomes"
+            git push
+          else
+            echo "Arquivo ja renomeado ou inexistente."
+          fi
